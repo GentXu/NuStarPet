@@ -1,0 +1,12 @@
+name: NuStarPet
+version: '${project.version}'
+main: com.rihejiu.nustarpet.NuStarPet
+depend:
+  - 'Currency'
+  - 'Vault'
+  - 'PlayerPoints'
+  - 'AttributePlus'
+commands:
+  nspet:
+    aliases:
+      - np
