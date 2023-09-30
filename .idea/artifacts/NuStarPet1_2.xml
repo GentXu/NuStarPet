@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="NuStarPet1.2">
+    <output-path>$PROJECT_DIR$/out/artifacts/NuStarPet1_2</output-path>
+    <root id="archive" name="NuStarPet1.2.jar">
+      <element id="module-output" name="NuStarPet" />
+    </root>
+  </artifact>
+</component>
