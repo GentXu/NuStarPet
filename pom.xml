@@ -85,6 +85,20 @@
             <scope>system</scope>
             <systemPath>${basedir}/src/lib/[V][经济前置]Vault-1.6.7.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>spigot</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.12.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/lib/Spigot-1.12.2-build1573k.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>PlayerPoints</groupId>
+            <artifactId>PlayerPoints</artifactId>
+            <version>3.2.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/lib/[P][点卷]PlayerPoints-3.2.1.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
