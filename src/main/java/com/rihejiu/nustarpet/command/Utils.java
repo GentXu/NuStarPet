@@ -27,6 +27,15 @@ public class Utils {
         }
         return numa;
     }
+
+    /**
+     *  异兽传承逻辑
+     * @param inheritedpet  被传承异兽
+     * @param inheritpet    传承异兽
+     * @param player    玩家名
+     * @param attr  传承什么天赋
+     * @return
+     */
     public static ItemStack petInherit(ItemStack inheritedpet, ItemStack inheritpet, Player player, int attr){
         String inheritpetpower = NBTUtils.getStringTag(inheritpet,"力量");
         String inheritpetspeed = NBTUtils.getStringTag(inheritpet,"敏捷");
@@ -64,6 +73,14 @@ public class Utils {
         inheritedpet = Pet.PetLevelUp(player,exp,inheritedpet);
         return inheritedpet;
     }
+
+    /**
+     *
+     * @param evolvepet 进化宠物
+     * @param newpet    进化宠物需要new一个新的宠物对象，将新宠物对象的天赋信息给进化宠物
+     * @param player    玩家名字
+     * @return  按理说不需要返回
+     */
     public static ItemStack randomUnlockedPetTalent(ItemStack evolvepet, Pet newpet, Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -120,6 +137,14 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+
+    /**
+     *  锁定力量天赋
+     * @param evolvepet 进化宠物
+     * @param newpet    新的宠物对象
+     * @param player    玩家名字
+     * @return  按理说不需要返回
+     */
     public static ItemStack randomPowerlockedPetTalent(ItemStack evolvepet,Pet newpet,Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -165,6 +190,13 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+    /**
+     *  锁定速度天赋
+     * @param evolvepet 进化宠物
+     * @param newpet    新的宠物对象
+     * @param player    玩家名字
+     * @return  按理说不需要返回
+     */
     public static ItemStack randomSpeedlockedPetTalent(ItemStack evolvepet,Pet newpet,Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -210,6 +242,13 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+    /**
+     *  锁定体力天赋
+     * @param evolvepet 进化宠物
+     * @param newpet    新的宠物对象
+     * @param player    玩家名字
+     * @return  按理说不需要返回
+     */
     public static ItemStack randomSpiritlockedPetTalent(ItemStack evolvepet,Pet newpet,Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -255,6 +294,13 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+    /**
+     *  锁定智力天赋
+     * @param evolvepet 进化宠物
+     * @param newpet    新的宠物对象
+     * @param player    玩家名字
+     * @return  按理说不需要返回
+     */
     public static ItemStack randomWisdomlockedPetTalent(ItemStack evolvepet,Pet newpet,Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -356,6 +402,14 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+
+    /**
+     * 重载方法，当该宠物有SS天赋时
+     * @param evolvepet 进化宠物
+     * @param newpet    新的宠物对象
+     * @param player    玩家名
+     * @return
+     */
     public static ItemStack randomPowerlockedPetTalent(ItemStack evolvepet, PetSS newpet, Player player){
         int evolution = Integer.parseInt(NBTUtils.getStringTag(evolvepet,"Evolution"));
         int newevolution = evolution + 1;
@@ -536,6 +590,14 @@ public class Utils {
         evolvepet = NBTUtils.setStringTag(evolvepet,"Evolution",String.valueOf(newevolution));
         return evolvepet;
     }
+
+    /**
+     * 取走物品
+     * @param player    玩家名
+     * @param item  物品名称
+     * @param amount    物品数量
+     * @return
+     */
     public static boolean takeItem(Player player,String item,int amount){
         Inventory inv = player.getInventory();
         int amount2 = 0;
@@ -573,6 +635,12 @@ public class Utils {
         }
         return false;
     }
+
+    /**
+     * 献祭宠物
+     * @param pet   宠物对象
+     * @param player    玩家名
+     */
     public static void immolatePet(ItemStack pet,Player player){
         ItemMeta petmeta = pet.getItemMeta();
         String petname = petmeta.getDisplayName();
@@ -595,6 +663,12 @@ public class Utils {
                 break;
         }
     }
+
+    /**
+     * 检测是否含有SS天赋
+     * @param pet   宠物
+     * @return  是否
+     */
     public static boolean checkSS(ItemStack pet){
         return !NBTUtils.getStringTag(pet, "力量").contains("SS") && !NBTUtils.getStringTag(pet, "敏捷").contains("SS")
                 && !NBTUtils.getStringTag(pet, "体力").contains("SS") && !NBTUtils.getStringTag(pet, "智慧").contains("SS");
@@ -602,6 +676,12 @@ public class Utils {
     public static String msgColor(String msg){
         return ChatColor.translateAlternateColorCodes('&',msg);
     }
+
+    /**
+     * 检测物品是否是宠物
+     * @param item  物品
+     * @return  是否
+     */
     public static boolean checkPet(ItemStack item){
         if (item == null || item.getItemMeta() == null || !item.getItemMeta().hasDisplayName()){return false;}
         String petid = NBTUtils.getStringTag(item,"PetId");
@@ -615,6 +695,12 @@ public class Utils {
         }
         return false;
     }
+
+    /**
+     * 检测是否含有SS天赋
+     * @param inheritedpet  被传承宠物
+     * @return  是否
+     */
     public static boolean checkInheritSS(ItemStack inheritedpet){
         ItemMeta inheritedpetmeta = inheritedpet.getItemMeta();
         List<String> lore = inheritedpetmeta.getLore();

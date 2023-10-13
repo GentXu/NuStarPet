@@ -14,6 +14,12 @@ public class RandomTalent {
     private static final Random random = new Random();
 
     // 生成随机字符的方法
+
+    /**
+     *  随机单个字符，返回单个字符
+     *  用于随机宠物属性天赋
+     * @return  返回属性天赋
+     */
     public static String generateRandomCharacter() {
         int totalWeight = 0;
         for (int weight : weights) {
@@ -33,6 +39,15 @@ public class RandomTalent {
         // 如果权重设置有问题，默认返回第一个字符
         return characters[0];
     }
+
+    /**
+     *  随机宠物天赋，结果是字符串拼接
+     *
+     * @param random    random对象
+     * @param weights   权重数组
+     * @param strings   根据权重随机的字符串数组
+     * @return  返回随机后的字符串
+     */
     public static String generateRandomString(Random random,int[] weights,String [] strings) {
         int randomCount = random.nextInt(strings.length) + 1;
         List<String> selectedStrings = new ArrayList<>();

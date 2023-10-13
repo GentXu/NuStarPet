@@ -20,6 +20,14 @@ public class Pet {
     public static final Pattern pattern = Pattern.compile("(\\d+)\\(上限: (\\d+)");
     public static final Pattern pattern2 = Pattern.compile("(\\d+)\\((\\d+)");
     public static final Pattern pattern3 = Pattern.compile("(\\d+)/(\\d+)");
+
+    /**
+     *
+     * @param player 玩家名
+     * @param exp   升级经验值
+     * @param pet   宠物对象
+     * @return  返回宠物对象，按理说不需要返回
+     */
     public static ItemStack PetLevelUp(Player player,int exp, ItemStack pet) {
         // 异兽当前最大经验和当前经验
         int maxexp = getPetMaxExp(pet);
@@ -42,6 +50,15 @@ public class Pet {
         }
         return pet;
     }
+
+    /**
+     *
+     * @param exp   传入的生命值
+     * @param maxexp    该宠物当前经验值上限
+     * @param pet   宠物对象
+     * @param oldexp    该宠物当前经验值
+     * @return  按理说不需要返回东西
+     */
     public static ItemStack recursionLevelUp(int exp, int maxexp, ItemStack pet,int oldexp){
         // 如果喂养经验值大于升级经验 则执行升级逻辑
         if (exp > maxexp - oldexp){
@@ -68,6 +85,11 @@ public class Pet {
         }
         return pet;
     }
+
+    /**
+     *
+     * @param pet   设置宠物当前经验值
+     */
     public static void setPetExp(ItemStack pet){
         // lore行数
         int index = 0;
@@ -94,6 +116,13 @@ public class Pet {
         itemMeta.setLore(lores);
         pet.setItemMeta(itemMeta);
     }
+
+    /**
+     * 花费金币恢复宠物生命值
+     *
+     * @param pet   宠物对象
+     * @param player    玩家名称
+     */
     public static void setPetHealth(ItemStack pet,Player player){
         int index = 0;
         List<String> lores = pet.getItemMeta().getLore();
@@ -123,7 +152,14 @@ public class Pet {
         itemMeta.setLore(lores);
         pet.setItemMeta(itemMeta);
     }
+
+    /**
+     *  宠物升级时需要修改的Lore
+     *
+     * @param pet   传入宠物对象
+     */
     public static void loreLevelUp (ItemStack pet){
+        // 遍历到哪一行的Lore
         int index = 0;
         List<String> lores = pet.getItemMeta().getLore();
         ItemMeta itemMeta = pet.getItemMeta();

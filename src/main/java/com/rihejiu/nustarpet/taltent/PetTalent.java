@@ -29,6 +29,11 @@ public class PetTalent {
         this.player = player;
         this.pet = pet;
     }
+
+    /**
+     * 根据不同的宠物名调用对应的宠物天赋方法
+     * @param petname   传入宠物名
+     */
     public void chooseName(String petname){
         switch (petname){
             case "尖牙蝙蝠":
@@ -49,6 +54,12 @@ public class PetTalent {
     private int flag1;
     private int flag2;
     private int flag3;
+
+    /**
+     * 对应宠物的天赋消息
+     * @param petname   宠物名字
+     * @param player    消息发送的玩家
+     */
     public void talentMsg(String petname, Player player){
         switch (petname){
             case "尖牙蝙蝠":
