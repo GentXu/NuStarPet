@@ -69,6 +69,13 @@ public class AddSourceAttribute {
     List<String> petattr = new ArrayList<>();
 
     int flag;
+
+    /**
+     * 给予玩家属性
+     * @param player    玩家名
+     * @param pets  宠物对象
+     * @param petname   宠物名称
+     */
     public void giveAttr(Player player, ItemStack pets, String petname){
         flag = 0;
         AddSourceAttribute asa = EventListener.getPlayerAsa(player);
@@ -105,6 +112,7 @@ public class AddSourceAttribute {
                 if (matcher.find()){
                     String entry = matcher.group();
                     int totalMin = Integer.parseInt(entry.split("/")[0]);
+                    // 如果宠物血量=0 属性不生效
                     if (totalMin <= 0) {
                         flag = 1;
                     }
@@ -126,6 +134,11 @@ public class AddSourceAttribute {
             APHook.setAttr("pet", player, asa.getPetattr());
         }
     }
+
+    /**
+     * 取消玩家宠物属性
+     * @param player    玩家名
+     */
     public void takeAttr(Player player){
         AddSourceAttribute asa = EventListener.getPlayerAsa(player);
         asa.setWisdom(0);
