@@ -85,6 +85,12 @@ public class Main implements CommandExecutor {
             case "petinherit":
                 new InheritMenu(Bukkit.getPlayer(args[1])).open();
                 break;
+            case "follow":
+                Utils.follow(Bukkit.getPlayer(args[1]));
+                break;
+            case "unfollow":
+                Utils.unFollow(Bukkit.getPlayer(args[1]));
+                break;
         }
         return true;
     }
