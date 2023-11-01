@@ -55,18 +55,19 @@ public class Utils {
         if (petName == null){return;}
         switch (petName){
             case "尖牙蝙蝠":
-                NBTUtils.setStringTag(pet,"Uuid",PetUUID.jyUUID);
+                pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.jyUUID);
                 break;
             case "沙王蜘蛛":
-                NBTUtils.setStringTag(pet,"Uuid",PetUUID.zzUUID);
+                pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.zzUUID);
                 break;
             case "萨满阿多":
-                NBTUtils.setStringTag(pet,"Uuid",PetUUID.smUUID);
+                pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.smUUID);
                 break;
             case "通红之翼":
-                NBTUtils.setStringTag(pet,"Uuid",PetUUID.thUUID);
+                pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.thUUID);
                 break;
         }
+        player.getInventory().setItem(8,pet);
         player.sendMessage(msgColor("&a[异兽]异兽正在跟随于你。"));
     }
     public static void unFollow(Player player){
@@ -79,12 +80,9 @@ public class Utils {
             player.sendMessage(msgColor("&c[异兽]当前装备的宠物不正确！"));
             return;
         }
-        if (NBTUtils.getStringTag(pet,"Uuid") == null){
-            player.sendMessage(msgColor("&c[异兽]该异兽处于不跟随状态！"));
-            return;
-        }
-        NBTUtils.removeTag(pet,"Uuid");
-        player.sendMessage(msgColor("&a[异兽]异兽正在跟随于你。"));
+        pet = NBTUtils.removeTag(pet,"Uuid");
+        player.getInventory().setItem(8,pet);
+        player.sendMessage(msgColor("&a[异兽]异兽不会跟随你了。"));
     }
     /**
      *  异兽传承逻辑
