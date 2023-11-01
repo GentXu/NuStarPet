@@ -4,6 +4,7 @@ import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
 import com.rihejiu.nustarpet.hook.NeigeHook;
 import com.rihejiu.nustarpet.pet.Pet;
 import com.rihejiu.nustarpet.pet.PetSS;
+import com.rihejiu.nustarpet.pet.PetUUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -27,7 +28,64 @@ public class Utils {
         }
         return numa;
     }
-
+    public static String getDisplayNameWithoutColor(ItemStack itemStack) {
+        if (itemStack.hasItemMeta()) {
+            ItemMeta meta = itemStack.getItemMeta();
+            if (meta.hasDisplayName()) {
+                // 获取显示名称
+                String displayName = meta.getDisplayName();
+                // 去除颜色代码
+                return ChatColor.stripColor(displayName);
+            }
+        }
+        return null; // 如果没有显示名称或没有 ItemMeta
+    }
+    public static void follow(Player player){
+        ItemStack pet = player.getInventory().getItem(8);
+        if (pet == null || pet.getItemMeta() == null || !pet.getItemMeta().hasDisplayName() || !pet.getItemMeta().hasLore()){
+            player.sendMessage(msgColor("&c[异兽]当前装备的宠物不正确！"));
+            return;
+        }
+        if (!checkPet(pet)){
+            player.sendMessage(msgColor("&c[异兽]当前装备的宠物不正确！"));
+            return;
+        }
+        String petName = getDisplayNameWithoutColor(pet);
+        NBTUtils.setStringTag(pet,"Player",player.getName());
+        if (petName == null){return;}
+        switch (petName){
+            case "尖牙蝙蝠":
+                NBTUtils.setStringTag(pet,"Uuid",PetUUID.jyUUID);
+                break;
+            case "沙王蜘蛛":
+                NBTUtils.setStringTag(pet,"Uuid",PetUUID.zzUUID);
+                break;
+            case "萨满阿多":
+                NBTUtils.setStringTag(pet,"Uuid",PetUUID.smUUID);
+                break;
+            case "通红之翼":
+                NBTUtils.setStringTag(pet,"Uuid",PetUUID.thUUID);
+                break;
+        }
+        player.sendMessage(msgColor("&a[异兽]异兽正在跟随于你。"));
+    }
+    public static void unFollow(Player player){
+        ItemStack pet = player.getInventory().getItem(8);
+        if (pet == null || pet.getItemMeta() == null || !pet.getItemMeta().hasDisplayName() || !pet.getItemMeta().hasLore()){
+            player.sendMessage(msgColor("&c[异兽]当前装备的宠物不正确！"));
+            return;
+        }
+        if (!checkPet(pet)){
+            player.sendMessage(msgColor("&c[异兽]当前装备的宠物不正确！"));
+            return;
+        }
+        if (NBTUtils.getStringTag(pet,"Uuid") == null){
+            player.sendMessage(msgColor("&c[异兽]该异兽处于不跟随状态！"));
+            return;
+        }
+        NBTUtils.removeTag(pet,"Uuid");
+        player.sendMessage(msgColor("&a[异兽]异兽正在跟随于你。"));
+    }
     /**
      *  异兽传承逻辑
      * @param inheritedpet  被传承异兽
