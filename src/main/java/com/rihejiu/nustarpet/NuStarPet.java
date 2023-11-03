@@ -41,6 +41,11 @@ public final class NuStarPet extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamageEntityListener(), this);
         getServer().getPluginManager().registerEvents(new PetLevelUp(),  this);
         getServer().getPluginManager().registerEvents( new EventListener(), this);
+        console("[NuStarPet]§a _   _       ____  _             ____      _   ");
+        console("[NuStarPet]§a| \\ | |_   _/ ___|| |_ __ _ _ __|  _ \\ ___| |_ ");
+        console("[NuStarPet]§a|  \\| | | | \\___ \\| __/ _` | '__| |_) / _ \\ __|");
+        console("[NuStarPet]§a| |\\  | |_| |___) | || (_| | |  |  __/  __/ |_ ");
+        console("[NuStarPet]§a|_| \\_|\\__,_|____/ \\__\\__,_|_|  |_|   \\___|\\__|");
         console("§f宠物插件开启成功");
         console("§c作者: §93318029085");
     }
