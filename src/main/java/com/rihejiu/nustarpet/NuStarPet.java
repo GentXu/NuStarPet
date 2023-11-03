@@ -12,7 +12,6 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public final class NuStarPet extends JavaPlugin {
     private static PlayerPointsAPI points;
@@ -21,7 +20,9 @@ public final class NuStarPet extends JavaPlugin {
         return economy;
     }
     private static Economy economy = null;
-    private static final Logger logger = Logger.getLogger("NuStarPet");
+    public void console(String s){
+        Bukkit.getConsoleSender().sendMessage(s);
+    }
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -36,18 +37,12 @@ public final class NuStarPet extends JavaPlugin {
             getLogger().severe("初始化PlayerPoints成功！");
             points = PlayerPoints.getInstance().getAPI();
         }
-        logger.info("@@@@@\\`       =@^      =@^    =@^      =@@@@@@         @@       @@       @@     @@");
-        logger.info("@@   ,@\\      =@^      =@^    =@^      =@^             @@       @@       @@     @@");
-        logger.info("@@    @/      =@^      =@^    =@^      =@^             @@       @@       @@     @@");
-        logger.info("@@@@@/`       =@^      =@@@@@@@@^      =@@@@@^         @@       @@       @@     @@");
-        logger.info("@@   \\@       =@^      =@^    =@^      =@^             @@       @@       @@     @@");
-        logger.info("@@    @\\      =@^      =@^    =@^      =@^            /@^       @@       ,@\\` ,/@");
-        logger.info("[[    ,[`     ,[`      ,[`    ,[`      ,[[[[[[     ,[[[         [[          [[[   ");
-        logger.info("插件加载成功 作者QQ3318029085");
         Objects.requireNonNull(Bukkit.getPluginCommand("nspet")).setExecutor(new Main());
         getServer().getPluginManager().registerEvents(new EntityDamageEntityListener(), this);
         getServer().getPluginManager().registerEvents(new PetLevelUp(),  this);
         getServer().getPluginManager().registerEvents( new EventListener(), this);
+        console("§f宠物插件开启成功");
+        console("§c作者: §93318029085");
     }
     private boolean initVault(){
         boolean hasNull = false;
