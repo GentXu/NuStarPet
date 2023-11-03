@@ -50,10 +50,15 @@ public class EventListener implements Listener {
                 asa.takeAttr(player);
                 asa.giveAttr(player, pet, "通红之翼");
                 break;
+            case "恐狼":
+                asa.takeAttr(player);
+                asa.giveAttr(player, pet, "恐狼");
+                break;
             default:
                 asa.takeAttr(player);
                 break;
         }
+        // 检测玩家等级是否符合
         if (player.getInventory().getItem(8) != null && pet.getItemMeta().getLore() != null) {
             for (String line : pet.getItemMeta().getLore()) {
                 if (line.contains("需求等级: ")) {
