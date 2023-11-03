@@ -48,8 +48,12 @@ public class PetTalent {
             case "通红之翼":
                 Bat2(pet,player);
                 break;
+            case "恐狼":
+                kongLang(pet,player);
+                break;
         }
     }
+    // 不让天赋重复检测
     private int flag;
     private int flag1;
     private int flag2;
@@ -73,6 +77,9 @@ public class PetTalent {
                 break;
             case "通红之翼":
                 talentMsgBat2(player);
+                break;
+            case "恐狼":
+                talentMsgKongLang(player);
                 break;
         }
     }
@@ -301,6 +308,39 @@ public class PetTalent {
             }
         }
     }
+    public void talentMsgKongLang(Player player){
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        if (Identify.getPet(player,8) == null){
+            return;
+        }
+        ItemMeta petmeta = Identify.getPet(player,8);
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta != null ? petmeta.getLore() : null;
+        for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
+            String line = lore.get(i);
+            if (line.contains("[嚎叫]") && !line.contains("§7[") && flag == 0){
+                player.sendMessage(ChatColor.WHITE + "嚎叫: 护甲穿透+" + formatter.format(level * 0.2) + "%");
+                flag++;
+                i--;
+            }
+            if (line.contains("[高级旋风]") && !line.contains("§7[") && flag1 == 0){
+                player.sendMessage(ChatColor.WHITE + "高级旋风: 飓风基础伤害+" + formatter.format(level * 1.4));
+                flag1++;
+                i--;
+            }
+            if (line.contains("[强壮]") && !line.contains("§7[") && flag2 == 0){
+                player.sendMessage(ChatColor.WHITE + "强壮: 生命值+" + level * 5);
+                flag2++;
+                i--;
+            }
+            if (line.contains("[狂暴]") && !line.contains("§7[") && flag3 == 0){
+                player.sendMessage(ChatColor.WHITE + "狂暴: 连击几率" + formatter.format(level * 0.3));
+                flag3++;
+                i--;
+            }
+        }
+    }
     public void Bat2(ItemStack pet, Player player){
         ItemMeta petmeta = pet.getItemMeta();
         int level = Pet.getPetLevel(player);
@@ -327,6 +367,37 @@ public class PetTalent {
             }
             if (line.contains("[魔灵]") && !line.contains("§7[") && flag3 == 0){
                 asa.setPetattr("魔击力: " + formatter.format(level * 1.2));
+                flag3++;
+                i--;
+            }
+        }
+    }
+    public void kongLang(ItemStack pet, Player player){
+        ItemMeta petmeta = pet.getItemMeta();
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta.getLore();
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        for (int i = 0;i < lore.size();i++){
+            String line = lore.get(i);
+            if (line.contains("[嚎叫]") && !line.contains("§7[") && flag == 0){
+                asa.setPetattr("护甲穿透: " + formatter.format(level * 0.2));
+                flag++;
+                i--;
+            }
+            if (line.contains("[高级旋风]") && !line.contains("§7[") && flag1 == 0){
+                asa.setPetattr("飓风基础伤害: " + formatter.format(level * 1.4));
+                flag1++;
+                i--;
+            }
+            if (line.contains("[强壮]") && !line.contains("§7[") && flag2 == 0){
+                asa.setPetattr("生命值: " + level * 5);
+                flag2++;
+                i--;
+            }
+            if (line.contains("[狂暴]") && !line.contains("§7[") && flag3 == 0){
+                asa.setPetattr("连击几率: " + formatter.format(level * 0.3));
                 flag3++;
                 i--;
             }
