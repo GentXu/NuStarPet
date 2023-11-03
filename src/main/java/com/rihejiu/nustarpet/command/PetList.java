@@ -1,10 +1,7 @@
 package com.rihejiu.nustarpet.command;
 
 import com.rihejiu.nustarpet.pet.Pet;
-import com.rihejiu.nustarpet.random.pettalent.Bat;
-import com.rihejiu.nustarpet.random.pettalent.Bat2;
-import com.rihejiu.nustarpet.random.pettalent.Spider;
-import com.rihejiu.nustarpet.random.pettalent.Zombie;
+import com.rihejiu.nustarpet.random.pettalent.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -236,6 +233,62 @@ public class PetList {
         customItem = NBTUtils.setStringTag(customItem, "PetId", "通红之翼");
         customItem = NBTUtils.setStringTag(customItem, "Uuid", "4ee789a6-2515-4017-82a8-466f0a3f9583");
         customItem = NBTUtils.setNBTTag(customItem, "EntityTag", "id","minecraft:bat");
+        // 给玩家物品
+        player.getInventory().addItem(customItem);
+    }
+    public void konglang(Player player) {
+        // 创建一个新的物品，这里使用钻石剑作为示例
+        ItemStack customItem = new ItemStack(Material.MONSTER_EGG);
+        // 获取 ItemMeta，用于设置 Lore 和 NBT
+        ItemMeta meta = customItem.getItemMeta();
+        // 创建异兽对象
+        Pet pet = new Pet();
+        // 设置Lore
+        // 创建 Lore 列表并添加 Lore 行
+        List<String> lore = new ArrayList<>();
+        lore.add(Utils.msgColor("&61级恐狼"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7需求等级: 25"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7经验: 0(0%)"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&6力量: 45" + "+" + pet.getTalentPowerNum() + "[" + pet.getTalentPower()+ "]" ));
+        lore.add(Utils.msgColor("&6敏捷: 45" + "+" + pet.getTalentSpeedNum() + "[" + pet.getTalentSpeed() + "]" ));
+        lore.add(Utils.msgColor("&6体力: 55" + "+" + pet.getTalentSpiritNum() + "[" + pet.getTalentSpirit() + "]" ));
+        lore.add(Utils.msgColor("&6智慧: 45" + "+" + pet.getTalentWisdomNum() + "[" + pet.getTalentWisdom() + "]" ));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&d果实: 0(上限: 1)"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&c异兽生命值: 20/") + pet.getMaxHealth());
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7一只被封印着的恐狼，可以将它召唤出来"));
+        lore.add(Utils.msgColor("&7为你战斗。"));
+        lore.add(Utils.msgColor("&7种族天赋:"));
+        lore.add(Utils.msgColor("&7[嚎叫][高级旋风][强壮][狂暴]"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&3携带天赋: "));
+        lore.add(Utils.msgColor("&3" + KongLang.generateRandomString()));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&4血脉: 未开启"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7售价: 10000"));
+        meta.setLore(lore);
+        meta.setDisplayName(ChatColor.WHITE+ "恐狼");
+        customItem.setItemMeta(meta);
+        // 设置NBT标签
+        customItem = NBTUtils.setStringTag(customItem, "力量", pet.getTalentPower());
+        customItem = NBTUtils.setStringTag(customItem, "体力", pet.getTalentSpirit());
+        customItem = NBTUtils.setStringTag(customItem, "智慧", pet.getTalentWisdom());
+        customItem = NBTUtils.setStringTag(customItem, "敏捷", pet.getTalentSpeed());
+        customItem = NBTUtils.setStringTag(customItem, "Exp", "0");
+        customItem = NBTUtils.setStringTag(customItem, "Level", "1");
+        customItem = NBTUtils.setStringTag(customItem, "Evolution", "1");
+        customItem = NBTUtils.setStringTag(customItem, "MaxExp", "165");
+        customItem = NBTUtils.setStringTag(customItem, "MaxLevel", "90");
+        customItem = NBTUtils.setStringTag(customItem, "Player", player.getName());
+        customItem = NBTUtils.setStringTag(customItem, "PetId", "恐狼");
+        customItem = NBTUtils.setStringTag(customItem, "Uuid", "eaa388e5-2ed8-4c13-8276-09988fb2ab33");
+        customItem = NBTUtils.setNBTTag(customItem, "EntityTag", "id","minecraft:wolf");
         // 给玩家物品
         player.getInventory().addItem(customItem);
     }
