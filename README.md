@@ -1,6 +1,11 @@
-NuStarPet
-=========
-    NuStarPet是一款基于BukkitAPI开发的Minecraft异兽插件，目前具有的功能
+# NuStarPet项目介绍
+    NuStarPet是一款基于BukkitAPI开发的Minecraft异兽插件
+# 插件依赖
+    Currency
+    Vault
+    PlayerPoints
+    AttributePlus
+# 插件功能
     1、献祭
     通过献祭来获得天赋精华和兽魂，这两种道具可以觉醒异兽的新天赋
     2、进化
