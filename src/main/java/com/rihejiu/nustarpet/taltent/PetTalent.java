@@ -20,12 +20,16 @@ public class PetTalent {
         flag1 = 0;
         flag2 = 0;
         flag3 = 0;
+        flag4 = 0;
+        flag5 = 0;
     }
     public PetTalent(ItemStack pet,Player player){
         flag = 0;
         flag1 = 0;
         flag2 = 0;
         flag3 = 0;
+        flag4 = 0;
+        flag5 = 0;
         this.player = player;
         this.pet = pet;
     }
@@ -51,6 +55,9 @@ public class PetTalent {
             case "恐狼":
                 kongLang(pet,player);
                 break;
+            case "战魂":
+                zhanHun(pet,player);
+                break;
         }
     }
     // 不让天赋重复检测
@@ -58,6 +65,8 @@ public class PetTalent {
     private int flag1;
     private int flag2;
     private int flag3;
+    private int flag4;
+    private int flag5;
 
     /**
      * 对应宠物的天赋消息
@@ -80,6 +89,9 @@ public class PetTalent {
                 break;
             case "恐狼":
                 talentMsgKongLang(player);
+                break;
+            case "战魂":
+                talentMsgZhanHun(player);
                 break;
         }
     }
@@ -269,7 +281,7 @@ public class PetTalent {
                 i--;
             }
             if (line.contains("[邪术]") && !line.contains("§7[") && flag3 == 0){
-                asa.setPetattr("魔力吸取: " + formatter.format(level * 0.5));
+                asa.setPetattr("吸魔: " + formatter.format(level * 0.5));
                 flag3++;
                 i--;
             }
@@ -341,6 +353,49 @@ public class PetTalent {
             }
         }
     }
+    public void talentMsgZhanHun(Player player){
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        if (Identify.getPet(player,8) == null){
+            return;
+        }
+        ItemMeta petmeta = Identify.getPet(player,8);
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta != null ? petmeta.getLore() : null;
+        for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
+            String line = lore.get(i);
+            if (line.contains("[鹰眼]") && !line.contains("§7[") && flag == 0){
+                player.sendMessage(ChatColor.WHITE + "鹰眼: 暴击几率+" + formatter.format(level * 0.25) + "%");
+                flag++;
+                i--;
+            }
+            if (line.contains("[高级飞行]") && !line.contains("§7[") && flag1 == 0){
+                player.sendMessage(ChatColor.WHITE + "高级飞行: 闪避几率+" + formatter.format(level * 0.25) + "%");
+                flag1++;
+                i--;
+            }
+            if (line.contains("[高级闪电]") && !line.contains("§7[") && flag2 == 0){
+                player.sendMessage(ChatColor.WHITE + "高级闪电: 雷电基础伤害+" + level * 5);
+                flag2++;
+                i--;
+            }
+            if (line.contains("[冰盾]") && !line.contains("§7[") && flag3 == 0){
+                player.sendMessage(ChatColor.WHITE + "冰盾: 寒冰抗性" + formatter.format(level * 0.3) + "%");
+                flag3++;
+                i--;
+            }
+            if (line.contains("[邪术]") && !line.contains("§7[") && flag4 == 0){
+                player.sendMessage(ChatColor.WHITE + "邪术: 魔力吸取" + formatter.format(level * 0.5));
+                flag4++;
+                i--;
+            }
+            if (line.contains("[啄目]") && !line.contains("§7[") && flag5 == 0){
+                player.sendMessage(ChatColor.WHITE + "啄目: 命中几率" + formatter.format(level * 0.25) + "%");
+                flag5++;
+                i--;
+            }
+        }
+    }
     public void Bat2(ItemStack pet, Player player){
         ItemMeta petmeta = pet.getItemMeta();
         int level = Pet.getPetLevel(player);
@@ -399,6 +454,47 @@ public class PetTalent {
             if (line.contains("[狂暴]") && !line.contains("§7[") && flag3 == 0){
                 asa.setPetattr("连击几率: " + formatter.format(level * 0.3));
                 flag3++;
+                i--;
+            }
+        }
+    }
+    public void zhanHun(ItemStack pet, Player player){
+        ItemMeta petmeta = pet.getItemMeta();
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta.getLore();
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        for (int i = 0;i < lore.size();i++){
+            String line = lore.get(i);
+            if (line.contains("[啄目]") && !line.contains("§7[") && flag == 0){
+                asa.setPetattr("命中几率: " + formatter.format(level * 0.25));
+                flag++;
+                i--;
+            }
+            if (line.contains("[鹰眼]") && !line.contains("§7[") && flag1 == 0){
+                asa.setPetattr("暴击几率: " + formatter.format(level * 0.25));
+                flag1++;
+                i--;
+            }
+            if (line.contains("[冰盾]") && !line.contains("§7[") && flag2 == 0){
+                asa.setPetattr("寒冰抗性: " + formatter.format(level * 0.3));
+                flag2++;
+                i--;
+            }
+            if (line.contains("[邪术]") && !line.contains("§7[") && flag3 == 0){
+                asa.setPetattr("吸魔: " + formatter.format(level * 0.5));
+                flag3++;
+                i--;
+            }
+            if (line.contains("[高级飞行]") && !line.contains("§7[") && flag4 == 0){
+                asa.setPetattr("闪避几率: " + formatter.format(level * 0.25));
+                flag4++;
+                i--;
+            }
+            if (line.contains("[高级闪电]") && !line.contains("§7[") && flag5 == 0){
+                asa.setPetattr(ChatColor.WHITE + "高级闪电: 雷电基础伤害+" + level * 5);
+                flag5++;
                 i--;
             }
         }

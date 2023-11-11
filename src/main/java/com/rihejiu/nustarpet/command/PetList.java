@@ -292,4 +292,60 @@ public class PetList {
         // 给玩家物品
         player.getInventory().addItem(customItem);
     }
+    public void zhanhun(Player player) {
+        // 创建一个新的物品，这里使用钻石剑作为示例
+        ItemStack customItem = new ItemStack(Material.MONSTER_EGG);
+        // 获取 ItemMeta，用于设置 Lore 和 NBT
+        ItemMeta meta = customItem.getItemMeta();
+        // 创建异兽对象
+        Pet pet = new Pet();
+        // 设置Lore
+        // 创建 Lore 列表并添加 Lore 行
+        List<String> lore = new ArrayList<>();
+        lore.add(Utils.msgColor("&61级战魂"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7需求等级: 30"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7经验: 0(0%)"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&6力量: 55" + "+" + pet.getTalentPowerNum() + "[" + pet.getTalentPower()+ "]" ));
+        lore.add(Utils.msgColor("&6敏捷: 50" + "+" + pet.getTalentSpeedNum() + "[" + pet.getTalentSpeed() + "]" ));
+        lore.add(Utils.msgColor("&6体力: 55" + "+" + pet.getTalentSpiritNum() + "[" + pet.getTalentSpirit() + "]" ));
+        lore.add(Utils.msgColor("&6智慧: 50" + "+" + pet.getTalentWisdomNum() + "[" + pet.getTalentWisdom() + "]" ));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&d果实: 0(上限: 1)"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&c异兽生命值: 20/") + pet.getMaxHealth());
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7一只被封印着的白色战魂，可以将它召唤"));
+        lore.add(Utils.msgColor("&7出来为你战斗。"));
+        lore.add(Utils.msgColor("&7种族天赋:"));
+        lore.add(Utils.msgColor("&7[高级飞行][鹰眼][冰盾][邪术][啄目][高级闪电]"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&3携带天赋: "));
+        lore.add(Utils.msgColor("&3" + Zhanhun.generateRandomString()));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&4血脉: 未开启"));
+        lore.add(Utils.msgColor("&8&m一一一一一一一一一一一一一一一一一"));
+        lore.add(Utils.msgColor("&7售价: 10000"));
+        meta.setLore(lore);
+        meta.setDisplayName(ChatColor.WHITE+ "战魂");
+        customItem.setItemMeta(meta);
+        // 设置NBT标签
+        customItem = NBTUtils.setStringTag(customItem, "力量", pet.getTalentPower());
+        customItem = NBTUtils.setStringTag(customItem, "体力", pet.getTalentSpirit());
+        customItem = NBTUtils.setStringTag(customItem, "智慧", pet.getTalentWisdom());
+        customItem = NBTUtils.setStringTag(customItem, "敏捷", pet.getTalentSpeed());
+        customItem = NBTUtils.setStringTag(customItem, "Exp", "0");
+        customItem = NBTUtils.setStringTag(customItem, "Level", "1");
+        customItem = NBTUtils.setStringTag(customItem, "Evolution", "1");
+        customItem = NBTUtils.setStringTag(customItem, "MaxExp", "165");
+        customItem = NBTUtils.setStringTag(customItem, "MaxLevel", "90");
+        customItem = NBTUtils.setStringTag(customItem, "Player", player.getName());
+        customItem = NBTUtils.setStringTag(customItem, "PetId", "战魂");
+        customItem = NBTUtils.setStringTag(customItem, "Uuid", "fca3aceb-7906-4573-b577-558efbdf1df2");
+        customItem = NBTUtils.setNBTTag(customItem, "EntityTag", "id","minecraft:skeleton");
+        // 给玩家物品
+        player.getInventory().addItem(customItem);
+    }
 }

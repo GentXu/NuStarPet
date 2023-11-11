@@ -6,4 +6,5 @@ public class PetUUID {
     public static String smUUID = "ef1653c4-5f31-4f25-91df-9afb055919cd";
     public static String thUUID = "4ee789a6-2515-4017-82a8-466f0a3f9583";
     public static String klUUID = "eaa388e5-2ed8-4c13-8276-09988fb2ab33";
+    public static String zhUUID = "fca3aceb-7906-4573-b577-558efbdf1df2";
 }
