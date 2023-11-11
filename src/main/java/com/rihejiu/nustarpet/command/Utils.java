@@ -68,6 +68,10 @@ public class Utils {
                 break;
             case "恐狼":
                 pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.klUUID);
+                break;
+            case "战魂":
+                pet = NBTUtils.setStringTag(pet,"Uuid",PetUUID.zhUUID);
+                break;
         }
         player.getInventory().setItem(8,pet);
         player.sendMessage(msgColor("&a[异兽]异兽正在跟随于你。"));
@@ -749,6 +753,7 @@ public class Utils {
             case "沙王蜘蛛":
             case "萨满阿多":
             case "通红之翼":
+            case "战魂":
             case "恐狼":
                 return true;
         }
