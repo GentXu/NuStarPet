@@ -58,6 +58,10 @@ public class Main implements CommandExecutor {
                     pl.konglang(Bukkit.getPlayer(args[1]));
                     break;
                 }
+                if (args[2].equals("zhanhun")){
+                    pl.zhanhun(Bukkit.getPlayer(args[1]));
+                    break;
+                }
                 break;
             case "petup":
                 new Menu(Bukkit.getPlayer(args[1])).open();
