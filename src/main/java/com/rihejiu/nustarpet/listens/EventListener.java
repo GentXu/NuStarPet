@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -54,23 +55,31 @@ public class EventListener implements Listener {
                 asa.takeAttr(player);
                 asa.giveAttr(player, pet, "恐狼");
                 break;
+            case "战魂":
+                asa.takeAttr(player);
+                asa.giveAttr(player, pet, "战魂");
+                break;
             default:
                 asa.takeAttr(player);
                 break;
         }
         // 检测玩家等级是否符合
-        if (player.getInventory().getItem(8) != null && pet.getItemMeta().getLore() != null) {
-            for (String line : pet.getItemMeta().getLore()) {
-                if (line.contains("需求等级: ")) {
-                    Matcher levelmatcher = pattern.matcher(line);
-                    if (levelmatcher.find()) {
-                        int level = Integer.parseInt(levelmatcher.group());
-                        if (player.getLevel() < level) {
-                            asa.takeAttr(player);
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f[异兽]你的等级不足以使用这只异兽，异兽属性将不会生效。"));
-                        }
-                    }
-                    break;
+        if (player.getInventory().getItem(8) != null && Utils.checkPet(player.getInventory().getItem(8)) && pet.getItemMeta().getLore() != null) {
+            List<String> lore = pet.getItemMeta().getLore();
+            Matcher levelmatcher = pattern.matcher(ChatColor.stripColor(lore.get(2)));
+            if (levelmatcher.find()) {
+                int level = Integer.parseInt(levelmatcher.group());
+                if (player.getLevel() < level) {
+                    asa.takeAttr(player);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f[异兽]你的等级不足以使用这只异兽，异兽属性将不会生效。"));
+                }
+            }
+            Matcher levelMatcher2 = pattern.matcher(ChatColor.stripColor(lore.get(0)));
+            if (levelMatcher2.find()) {
+                int level = Integer.parseInt(levelMatcher2.group());
+                if (player.getLevel() < level) {
+                    asa.takeAttr(player);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f[异兽]你的等级不足以使用这只异兽，异兽属性将不会生效。"));
                 }
             }
         }
