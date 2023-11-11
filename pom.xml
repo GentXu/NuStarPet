@@ -76,28 +76,28 @@
             <artifactId>api-AttributeAPI</artifactId>    <!--库名称，也可以自定义-->
             <version>1.0</version> <!--版本号-->
             <scope>system</scope> <!--作用域-->
-            <systemPath>${basedir}\src\lib\[A][属性]AttributePlus-3.3.1.2.jar</systemPath> <!--项目根目录下的lib文件夹下-->
+            <systemPath>${pom.basedir}\src\lib\[A][属性]AttributePlus-3.3.1.2.jar</systemPath> <!--项目根目录下的lib文件夹下-->
         </dependency>
         <dependency>
             <groupId>Vault</groupId>
             <artifactId>Vault</artifactId>
             <version>1.6.7</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/lib/[V][经济前置]Vault-1.6.7.jar</systemPath>
+            <systemPath>${pom.basedir}/src/lib/[V][经济前置]Vault-1.6.7.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>spigot</groupId>
             <artifactId>spigot</artifactId>
             <version>1.12.2</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/lib/Spigot-1.12.2-build1573k.jar</systemPath>
+            <systemPath>${pom.basedir}/src/lib/Spigot-1.12.2-build1573k.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>PlayerPoints</groupId>
             <artifactId>PlayerPoints</artifactId>
             <version>3.2.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/lib/[P][点卷]PlayerPoints-3.2.1.jar</systemPath>
+            <systemPath>${pom.basedir}/src/lib/[P][点卷]PlayerPoints-3.2.1.jar</systemPath>
         </dependency>
     </dependencies>
 
