@@ -3,10 +3,7 @@ package com.rihejiu.nustarpet.command;
 import com.rihejiu.nustarpet.Menu;
 import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
 import com.rihejiu.nustarpet.listens.EventListener;
-import com.rihejiu.nustarpet.menu.EvolveMenu;
-import com.rihejiu.nustarpet.menu.ImmolateMenu;
-import com.rihejiu.nustarpet.menu.InheritMenu;
-import com.rihejiu.nustarpet.menu.ReviveMenu;
+import com.rihejiu.nustarpet.menu.*;
 import com.rihejiu.nustarpet.taltent.PetTalent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,12 +24,13 @@ public class Main implements CommandExecutor {
         }
         if (args.length == 0) {
             sender.sendMessage(ChatColor.RED + "用法：");
-            sender.sendMessage(ChatColor.RED + "/nspet identify playername petid");
-            sender.sendMessage(ChatColor.RED + "/nspet petup playername");
-            sender.sendMessage(ChatColor.RED + "/nspet petattr playername");
-            sender.sendMessage(ChatColor.RED + "/nspet petimmolate playername");
-            sender.sendMessage(ChatColor.RED + "/nspet petevolve playername");
-            sender.sendMessage(ChatColor.RED + "/nspet petinherit playername");
+            sender.sendMessage(ChatColor.RED + "/nspet identify playername petid 鉴定异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet petup playername 喂养异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet petattr playername 查看异兽属性");
+            sender.sendMessage(ChatColor.RED + "/nspet petimmolate playername 献祭异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet petevolve playername 进化异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet petinherit playername 传承异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet pettalent playername 培养异兽");
             return true;
         }
         switch (args[0]){
@@ -98,6 +96,9 @@ public class Main implements CommandExecutor {
                 break;
             case "unfollow":
                 Utils.unFollow(Bukkit.getPlayer(args[1]));
+                break;
+            case "pettalent":
+                new TalentMenu(Bukkit.getPlayer(args[1])).open();
                 break;
         }
         return true;

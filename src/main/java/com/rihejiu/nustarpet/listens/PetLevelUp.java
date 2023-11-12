@@ -538,6 +538,68 @@ public class PetLevelUp implements Listener {
                 }
             }
         }
+        if (inv.getTitle().equals(TalentMenu.TITLE)) {
+            int[] slot = {0, 1, 2, 3, 5, 6, 7, 8};
+            for (int j : slot) {
+                // 禁止对玻璃板等物品进行操作
+                if (e.getRawSlot() == j) {
+                    e.setCancelled(true);
+                }
+            }
+            // 确保点的地方肯定有物品
+            if (e.getRawSlot() < 0 || e.getRawSlot() > e.getInventory().getSize()) {
+                return;
+            }
+            // 获取被点的格子的物品
+            ItemStack clickedItem = e.getCurrentItem();
+            // 如果被点的物品是null则返回
+            if (clickedItem == null) {
+                return;
+            }
+            if (e.getRawSlot() == 7) {
+                ItemStack sign = inv.getTopInventory().getItem(7);
+                ItemStack petItem = inv.getTopInventory().getItem(4);
+                if (petItem == null || petItem.getItemMeta() == null || !petItem.getItemMeta().hasDisplayName()){return;}
+                sign.setItemMeta(Utils.talentSign(petItem,player));
+            }
+            if (e.getRawSlot() == 8){
+                ItemStack petItem = inv.getTopInventory().getItem(4);
+                if (petItem == null || petItem.getItemMeta() == null || !petItem.getItemMeta().hasDisplayName()){return;}
+                if (Utils.checkPet(petItem)){
+                    if (Utils.chooseTalentPlan(petItem)){
+                        if (Utils.checkShouhun(player) >= Utils.petTalentShouHun(petItem) && Utils.checkTalent(player) >= 4){
+                            if (Utils.petTalent2(petItem,player)) {
+                                Utils.takeItem(player, "兽魂", Utils.petTalentShouHun(petItem));
+                                Utils.takeItem(player, "天赋精华", 4);
+                                if (Utils.shouldExecute(Utils.petTalentChance(petItem))) {
+                                    Utils.petTalent(petItem, player);
+                                } else {
+                                    player.sendMessage(Utils.msgColor("&c[培养]很遗憾这次什么天赋都没获得。"));
+                                }
+                            }
+                        } else {
+                            player.sendMessage(Utils.msgColor("&c[培养]你的材料不足！"));
+                        }
+                    } else {
+                        if (Utils.checkShouhun(player) >= Utils.petTalentShouHun(petItem) && Utils.checkAdvencedTalent(player) >= 2){
+                            if (Utils.petTalent2(petItem,player)) {
+                                Utils.takeItem(player, "兽魂", Utils.petTalentShouHun(petItem));
+                                Utils.takeItem(player, "高级精华", 2);
+                                if (Utils.shouldExecute(Utils.petTalentChance(petItem))) {
+                                    Utils.petTalent(petItem, player);
+                                } else {
+                                    player.sendMessage(Utils.msgColor("&c[培养]很遗憾这次什么天赋都没获得。"));
+                                }
+                            }
+                        } else {
+                            player.sendMessage(Utils.msgColor("&c[培养]你的材料不足！"));
+                        }
+                    }
+                } else {
+                    player.sendMessage(Utils.msgColor("&c[培养]请放入正确的异兽！"));
+                }
+            }
+        }
     }
 
 
@@ -624,6 +686,23 @@ public class PetLevelUp implements Listener {
                 ItemMeta itemmeta = item.getItemMeta();
                 if (itemmeta.getDisplayName() != null) {
                     if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("确认传承") && !itemmeta.getDisplayName().contains("玩法介绍")) {
+                        player.getInventory().addItem(item);
+                    }
+                } else {
+                    player.getInventory().addItem(item);
+                }
+            }
+        }
+        if (inv.getTitle().equals(TalentMenu.TITLE)){
+            for(ItemStack item : inv.getTopInventory().getContents()) {
+                // 判断item是不是空的物品
+                if (item == null || item.getItemMeta() == null) {
+                    continue;
+                }
+                // 获得物品堆的物品数据
+                ItemMeta itemmeta = item.getItemMeta();
+                if (itemmeta.getDisplayName() != null) {
+                    if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("开始培养") && !itemmeta.getDisplayName().contains("玩法介绍")) {
                         player.getInventory().addItem(item);
                     }
                 } else {
