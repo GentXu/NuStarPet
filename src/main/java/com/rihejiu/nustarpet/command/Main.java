@@ -31,6 +31,7 @@ public class Main implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "/nspet petevolve playername 进化异兽");
             sender.sendMessage(ChatColor.RED + "/nspet petinherit playername 传承异兽");
             sender.sendMessage(ChatColor.RED + "/nspet pettalent playername 培养异兽");
+            sender.sendMessage(ChatColor.RED + "/nspet petfruit playername 喂养果实");
             return true;
         }
         switch (args[0]){
@@ -99,6 +100,9 @@ public class Main implements CommandExecutor {
                 break;
             case "pettalent":
                 new TalentMenu(Bukkit.getPlayer(args[1])).open();
+                break;
+            case "petfruit":
+                new FruitMenu(Bukkit.getPlayer(args[1])).open();
                 break;
         }
         return true;

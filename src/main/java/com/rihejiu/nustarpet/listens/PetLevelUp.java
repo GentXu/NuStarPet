@@ -600,6 +600,41 @@ public class PetLevelUp implements Listener {
                 }
             }
         }
+        if (inv.getTitle().equals(FruitMenu.TITLE)) {
+            int[] slot = {0, 1, 3, 4, 5, 7, 8};
+            for (int j : slot) {
+                // 禁止对玻璃板等物品进行操作
+                if (e.getRawSlot() == j) {
+                    e.setCancelled(true);
+                }
+            }
+            // 确保点的地方肯定有物品
+            if (e.getRawSlot() < 0 || e.getRawSlot() > e.getInventory().getSize()) {
+                return;
+            }
+            // 获取被点的格子的物品
+            ItemStack clickedItem = e.getCurrentItem();
+            // 如果被点的物品是null则返回
+            if (clickedItem == null) {
+                return;
+            }
+            if (e.getRawSlot() == 8){
+                ItemStack petItem = inv.getTopInventory().getItem(2);
+                ItemStack fruit = inv.getTopInventory().getItem(6);
+                if (petItem == null || petItem.getItemMeta() == null || !petItem.getItemMeta().hasDisplayName()){return;}
+                if (fruit == null || fruit.getItemMeta() == null || !fruit.getItemMeta().hasDisplayName()){return;}
+                if (Utils.checkPet(petItem) && Utils.checkFruit(fruit)){
+                    if (Utils.checkCanEat(petItem)){
+                        Utils.petEatFruit(petItem,fruit,player);
+                        fruit.setAmount(fruit.getAmount() - 1);
+                    } else {
+                        player.sendMessage(Utils.msgColor("&c[果实]该异兽不可以再喂养果实了！"));
+                    }
+                } else {
+                    player.sendMessage(Utils.msgColor("&c[果实]请放入正确的异兽或果实！"));
+                }
+            }
+        }
     }
 
 
@@ -703,6 +738,23 @@ public class PetLevelUp implements Listener {
                 ItemMeta itemmeta = item.getItemMeta();
                 if (itemmeta.getDisplayName() != null) {
                     if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("开始培养") && !itemmeta.getDisplayName().contains("玩法介绍")) {
+                        player.getInventory().addItem(item);
+                    }
+                } else {
+                    player.getInventory().addItem(item);
+                }
+            }
+        }
+        if (inv.getTitle().equals(FruitMenu.TITLE)){
+            for(ItemStack item : inv.getTopInventory().getContents()) {
+                // 判断item是不是空的物品
+                if (item == null || item.getItemMeta() == null) {
+                    continue;
+                }
+                // 获得物品堆的物品数据
+                ItemMeta itemmeta = item.getItemMeta();
+                if (itemmeta.getDisplayName() != null) {
+                    if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("确认喂养") && !itemmeta.getDisplayName().contains("玩法介绍")) {
                         player.getInventory().addItem(item);
                     }
                 } else {
