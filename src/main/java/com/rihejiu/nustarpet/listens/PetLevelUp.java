@@ -754,7 +754,7 @@ public class PetLevelUp implements Listener {
                 // 获得物品堆的物品数据
                 ItemMeta itemmeta = item.getItemMeta();
                 if (itemmeta.getDisplayName() != null) {
-                    if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("确认喂养") && !itemmeta.getDisplayName().contains("玩法介绍")) {
+                    if (!itemmeta.getDisplayName().contains("-") && !itemmeta.getDisplayName().contains("确定喂养") && !itemmeta.getDisplayName().contains("玩法介绍")) {
                         player.getInventory().addItem(item);
                     }
                 } else {
