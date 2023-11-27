@@ -261,7 +261,7 @@ public class Pet {
     }
     public static int getPetNextLevelMaxExp(ItemStack pet){
         int petlevel = getPetLevel(pet);
-        return 140 * petlevel * petlevel + 25 * petlevel + 30;
+        return 100 * petlevel * petlevel + 15 * petlevel + 30;
     }
     public String getTalentPower() {
         return TalentPower;

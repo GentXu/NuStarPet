@@ -1,6 +1,7 @@
 package com.rihejiu.nustarpet.listens;
 
 import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
+import com.rihejiu.nustarpet.command.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -55,7 +56,7 @@ public class EntityDamageEntityListener implements Listener {
                     int totalMax = Integer.parseInt(entry.split("/")[1]);
                     if (totalMin < 0) {
                         asa.takeAttr(player);
-                        player.sendMessage("&c[异兽]你的异兽已阵亡。");
+                        player.sendMessage(Utils.msgColor("&c[异兽]你的异兽已阵亡。"));
                         return;
                     }
                         lores.set(index, ChatColor.translateAlternateColorCodes('&',"&c异兽生命值: ") + totalMin + "/" + totalMax);
