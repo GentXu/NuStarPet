@@ -224,6 +224,7 @@ public class PetLevelUp implements Listener {
                             Utils.takeItem(player, "生命精华", 1);
                             evolvepet = Utils.randomUnlockedPetTalent(evolvepet, newpet2, player);
                             inv.getTopInventory().setItem(13, evolvepet);
+                            Utils.command("chs run " + "任务检测.指引异兽进化.ks " + player.getName());
                         } else {
                             player.sendMessage(Utils.msgColor("&c[进化]进化道具不足！"));
                         }
