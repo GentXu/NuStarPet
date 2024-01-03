@@ -106,6 +106,7 @@ public class PetLevelUp implements Listener {
                 if (amount != 0) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f[异兽]喂养了" + amount + "个物品，异兽获得了" + sumexp + "点经验"));
                     player.getInventory().setItem(8,Pet.PetLevelUp(player, sumexp, Identify.getPetStack(player, 8)));
+                    Utils.command("chs run " + "任务检测.指引喂养异兽.ks " + player.getName());
                 }
             }
         }
@@ -159,6 +160,7 @@ public class PetLevelUp implements Listener {
                 if (revivepet == null || revivepet.getItemMeta() == null || !revivepet.getItemMeta().hasDisplayName()){return;}
                 if (Utils.checkPet(revivepet)) {
                     Pet.setPetHealth(revivepet, player);
+                    Utils.command("chs run " + "任务检测.指引复活异兽.ks " + player.getName());
                 }
             }
         }

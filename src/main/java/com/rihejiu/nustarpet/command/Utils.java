@@ -1130,6 +1130,14 @@ public class Utils {
                 NeigeHook.ShouhunCommand(player.getName(),"兽魂",20);
                 NeigeHook.JinghuaCommand(player.getName(),"天赋精华",1,5);
                 break;
+            case "§f恐狼":
+                NeigeHook.ShouhunCommand(player.getName(),"兽魂",30);
+                NeigeHook.JinghuaCommand(player.getName(),"天赋精华",10,15);
+                break;
+            case "§f战魂":
+                NeigeHook.ShouhunCommand(player.getName(),"兽魂",40);
+                NeigeHook.JinghuaCommand(player.getName(),"天赋精华",20,25);
+                break;
         }
     }
 
