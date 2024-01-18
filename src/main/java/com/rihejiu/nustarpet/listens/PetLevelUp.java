@@ -134,6 +134,7 @@ public class PetLevelUp implements Listener {
                 if (Utils.checkPet(immolatepet)){
                     Utils.immolatePet(immolatepet,player);
                     inv.getTopInventory().removeItem(immolatepet);
+                    Utils.command("chs run " + "任务检测.指引献祭异兽.ks " + player.getName());
                 }
             }
         }
