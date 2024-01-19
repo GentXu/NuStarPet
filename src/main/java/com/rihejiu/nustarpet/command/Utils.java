@@ -25,6 +25,13 @@ public class Utils {
         Random random = new Random();
         return random.nextDouble() < probability; // 小于 probability 时返回 true，大于等于时返回 false
     }
+
+    /**
+     * 检测异兽天赋是否已经全部觉醒
+     * @param petItem   异兽
+     * @param player    玩家
+     * @return  返回是否全部觉醒
+     */
     public static boolean petTalent2(ItemStack petItem,Player player){
         if (petItem == null || petItem.getItemMeta() == null || !petItem.getItemMeta().hasDisplayName()){return false;}
         ItemMeta petItemMeta = petItem.getItemMeta();
@@ -151,6 +158,28 @@ public class Utils {
                         String talentLine = petLore.get(i+1);
                         // 遍历该宠物所有天赋
                         for (String talent: TalentReset.kongLang){
+                            // 如果原始天赋不包含则新增该天赋后退出该循环
+                            if (!talentLine.contains(talent)){
+                                newTalent = talent;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (newTalent == null){
+                    player.sendMessage(msgColor("&c[培养]这只异兽已经掌握了全部的种族天赋！"));
+                    return false;
+                } else {
+                    return true;
+                }
+            case "战马":
+                for (int i = 0;i < petLore.size();i++){
+                    String line = petLore.get(i);
+                    if (line.contains("携带天赋")){
+                        // 记录下原始天赋列表
+                        String talentLine = petLore.get(i+1);
+                        // 遍历该宠物所有天赋
+                        for (String talent: TalentReset.zhanMa){
                             // 如果原始天赋不包含则新增该天赋后退出该循环
                             if (!talentLine.contains(talent)){
                                 newTalent = talent;
@@ -323,6 +352,29 @@ public class Utils {
                     player.sendMessage(msgColor("&3[培养]你的异兽觉醒了新天赋") + newTalent);
                 }
                 break;
+            case "战马":
+                for (int i = 0;i < petLore.size();i++){
+                    String line = petLore.get(i);
+                    if (line.contains("携带天赋")){
+                        String talentLine = petLore.get(i+1);
+                        for (String talent: TalentReset.zhanMa){
+                            if (!talentLine.contains(talent)){
+                                talentLine = talentLine + talent;
+                                newTalent = talent;
+                                break;
+                            }
+                        }
+                        petLore.set(i+1,talentLine);
+                        petItemMeta.setLore(petLore);
+                        petItem.setItemMeta(petItemMeta);
+                    }
+                }
+                if (newTalent == null){
+                    player.sendMessage(msgColor("&c[培养]这只异兽已经掌握了全部的种族天赋！"));
+                } else {
+                    player.sendMessage(msgColor("&3[培养]你的异兽觉醒了新天赋") + newTalent);
+                }
+                break;
         }
     }
     /**
@@ -370,6 +422,7 @@ public class Utils {
                 return true;
             case "战魂":
             case "恐狼":
+            case "战马":
                 return false;
         }
         return true;
@@ -397,6 +450,8 @@ public class Utils {
                 return 6;
             case "恐狼":
                 return 5;
+            case "战马":
+                return 7;
         }
         return 0;
     }
@@ -420,6 +475,8 @@ public class Utils {
                 return 0.4;
             case "恐狼":
                 return 0.45;
+            case "战马":
+                return 0.35;
         }
         return 0;
     }
@@ -447,6 +504,7 @@ public class Utils {
         }
         return null; // 如果没有显示名称或没有 ItemMeta
     }
+    // 已弃用
     public static void follow(Player player){
         ItemStack pet = player.getInventory().getItem(8);
         if (pet == null || pet.getItemMeta() == null || !pet.getItemMeta().hasDisplayName() || !pet.getItemMeta().hasLore()){
@@ -1162,6 +1220,7 @@ public class Utils {
             case "通红之翼":
             case "战魂":
             case "恐狼":
+            case "战马":
                 return true;
         }
         return false;

@@ -59,6 +59,10 @@ public class EventListener implements Listener {
                 asa.takeAttr(player);
                 asa.giveAttr(player, pet, "战魂");
                 break;
+            case "战马":
+                asa.takeAttr(player);
+                asa.giveAttr(player, pet, "战马");
+                break;
             default:
                 asa.takeAttr(player);
                 break;

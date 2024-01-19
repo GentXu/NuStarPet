@@ -61,6 +61,10 @@ public class Main implements CommandExecutor {
                     pl.zhanhun(Bukkit.getPlayer(args[1]));
                     break;
                 }
+                if (args[2].equals("zhanma")){
+                    pl.zhanma(Bukkit.getPlayer(args[1]));
+                    break;
+                }
                 break;
             case "petup":
                 new Menu(Bukkit.getPlayer(args[1])).open();
@@ -92,12 +96,13 @@ public class Main implements CommandExecutor {
             case "petinherit":
                 new InheritMenu(Bukkit.getPlayer(args[1])).open();
                 break;
-            case "follow":
+                // 跟随指令，已弃用
+/*            case "follow":
                 Utils.follow(Bukkit.getPlayer(args[1]));
                 break;
             case "unfollow":
                 Utils.unFollow(Bukkit.getPlayer(args[1]));
-                break;
+                break;*/
             case "pettalent":
                 new TalentMenu(Bukkit.getPlayer(args[1])).open();
                 break;

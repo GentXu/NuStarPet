@@ -58,6 +58,9 @@ public class PetTalent {
             case "战魂":
                 zhanHun(pet,player);
                 break;
+            case "战马":
+                zhanMa(pet,player);
+                break;
         }
     }
     // 不让天赋重复检测
@@ -92,6 +95,9 @@ public class PetTalent {
                 break;
             case "战魂":
                 talentMsgZhanHun(player);
+                break;
+            case "战马":
+                talentMsgZhanMa(player);
                 break;
         }
     }
@@ -396,6 +402,39 @@ public class PetTalent {
             }
         }
     }
+    public void talentMsgZhanMa(Player player){
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        if (Identify.getPet(player,8) == null){
+            return;
+        }
+        ItemMeta petmeta = Identify.getPet(player,8);
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta != null ? petmeta.getLore() : null;
+        for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
+            String line = lore.get(i);
+            if (line.contains("[高级寒冰]") && !line.contains("§7[") && flag == 0){
+                player.sendMessage(ChatColor.WHITE + "高级寒冰: 寒冰基础伤害+" + level * 5);
+                flag++;
+                i--;
+            }
+            if (line.contains("[高级吸血]") && !line.contains("§7[") && flag1 == 0){
+                player.sendMessage(ChatColor.WHITE + "吸血: 15%几率吸取" + formatter.format(level * 3.5) + "生命值");
+                flag1++;
+                i--;
+            }
+            if (line.contains("[铁皮]") && !line.contains("§7[") && flag2 == 0){
+                player.sendMessage(ChatColor.WHITE + "铁皮: 防御力+" + level * 2);
+                flag2++;
+                i--;
+            }
+            if (line.contains("[撕裂]") && !line.contains("§7[") && flag3 == 0){
+                player.sendMessage(ChatColor.WHITE + "撕裂: " + formatter.format(level * 0.5) + "%几率撕裂目标,每3秒损失3%生命值，持续12秒");
+                flag3++;
+                i--;
+            }
+        }
+    }
     public void Bat2(ItemStack pet, Player player){
         ItemMeta petmeta = pet.getItemMeta();
         int level = Pet.getPetLevel(player);
@@ -493,8 +532,39 @@ public class PetTalent {
                 i--;
             }
             if (line.contains("[高级闪电]") && !line.contains("§7[") && flag5 == 0){
-                asa.setPetattr(ChatColor.WHITE + "高级闪电: 雷电基础伤害+" + level * 5);
+                asa.setPetattr("雷电基础伤害: " + level * 5);
                 flag5++;
+                i--;
+            }
+        }
+    }
+    public void zhanMa(ItemStack pet, Player player){
+        ItemMeta petmeta = pet.getItemMeta();
+        int level = Pet.getPetLevel(player);
+        List<String> lore = petmeta.getLore();
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMaximumFractionDigits(2);
+        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        for (int i = 0;i < lore.size();i++){
+            String line = lore.get(i);
+            if (line.contains("[高级寒冰]") && !line.contains("§7[") && flag == 0){
+                asa.setPetattr("寒冰基础伤害: " + level * 5);
+                flag++;
+                i--;
+            }
+            if (line.contains("[高级吸血]") && !line.contains("§7[") && flag1 == 0){
+                asa.setPetattr("吸血: " + formatter.format(level * 3.5));
+                flag1++;
+                i--;
+            }
+            if (line.contains("[铁皮]") && !line.contains("§7[") && flag2 == 0){
+                asa.setPetattr("防御力: " + level * 2);
+                flag2++;
+                i--;
+            }
+            if (line.contains("[撕裂]") && !line.contains("§7[") && flag3 == 0){
+                asa.setPetattr("撕裂: " + formatter.format(level * 0.5));
+                flag3++;
                 i--;
             }
         }
