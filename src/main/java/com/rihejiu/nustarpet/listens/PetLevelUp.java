@@ -106,6 +106,7 @@ public class PetLevelUp implements Listener {
                 if (amount != 0) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f[异兽]喂养了" + amount + "个物品，异兽获得了" + sumexp + "点经验"));
                     player.getInventory().setItem(8,Pet.PetLevelUp(player, sumexp, Identify.getPetStack(player, 8)));
+                    Utils.command("chs run " + "任务检测.指引喂养异兽.ks " + player.getName());
                 }
             }
         }
@@ -133,6 +134,7 @@ public class PetLevelUp implements Listener {
                 if (Utils.checkPet(immolatepet)){
                     Utils.immolatePet(immolatepet,player);
                     inv.getTopInventory().removeItem(immolatepet);
+                    Utils.command("chs run " + "任务检测.指引献祭异兽.ks " + player.getName());
                 }
             }
         }
@@ -159,6 +161,7 @@ public class PetLevelUp implements Listener {
                 if (revivepet == null || revivepet.getItemMeta() == null || !revivepet.getItemMeta().hasDisplayName()){return;}
                 if (Utils.checkPet(revivepet)) {
                     Pet.setPetHealth(revivepet, player);
+                    Utils.command("chs run " + "任务检测.指引复活异兽.ks " + player.getName());
                 }
             }
         }
@@ -244,6 +247,7 @@ public class PetLevelUp implements Listener {
                                 player.sendMessage(Utils.msgColor("&f[异兽]消耗100点券锁定力量进化，剩余点券" + NuStarPet.getPoints().look(player.getUniqueId())));
                                 evolvepet = Utils.randomPowerlockedPetTalent(evolvepet, newpet, player);
                                 inv.getTopInventory().setItem(13, evolvepet);
+                                Utils.command("chs run " + "任务检测.指引异兽进化.ks " + player.getName());
                             } else {
                                 player.sendMessage(Utils.msgColor("&c[进化]道具不足！"));
                             }
@@ -255,6 +259,7 @@ public class PetLevelUp implements Listener {
                                 player.sendMessage(Utils.msgColor("&f[进化]消耗100点券锁定力量进化，剩余点券" + NuStarPet.getPoints().look(player.getUniqueId())));
                                 evolvepet = Utils.randomPowerlockedPetTalent(evolvepet, newpet2, player);
                                 inv.getTopInventory().setItem(13, evolvepet);
+                                Utils.command("chs run " + "任务检测.指引异兽进化.ks " + player.getName());
                             } else {
                                 player.sendMessage(Utils.msgColor("&c[进化]进化道具不足！"));
                             }

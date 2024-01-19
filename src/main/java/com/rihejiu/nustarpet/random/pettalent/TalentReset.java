@@ -7,4 +7,5 @@ public class TalentReset {
     public static String[] kongLang = {"[嚎叫]", "[高级旋风]", "[强壮]", "[狂暴]"};
     public static String[] zhanHun = {"[高级飞行]", "[鹰眼]", "[冰盾]", "[邪术]","[啄目]","[高级闪电]"};
     public static String[] saMan = {"[寒冰]", "[涌能]", "[冰盾]", "[邪术]"};
+    public static String[] zhanMa = {"[高级寒冰]", "[高级吸血]", "[铁皮]", "[撕裂]"};
 }
