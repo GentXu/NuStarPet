@@ -1,8 +1,8 @@
 package com.rihejiu.nustarpet.taltent;
 
 import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
-import com.rihejiu.nustarpet.command.Identify;
-import com.rihejiu.nustarpet.listens.EventListener;
+import com.rihejiu.nustarpet.command.Utils;
+import com.rihejiu.nustarpet.listens.AttrGiveListener;
 import com.rihejiu.nustarpet.pet.Pet;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -104,10 +104,10 @@ public class PetTalent {
     public void talentMsgBat(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -140,7 +140,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[吸血]") && !line.contains("§7[") && flag == 0){
@@ -168,10 +168,10 @@ public class PetTalent {
     public void talentMsgSpider(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -204,7 +204,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[毒液]") && !line.contains("§7[") && flag == 0){
@@ -232,10 +232,10 @@ public class PetTalent {
     public void talentMsgZombie(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -268,7 +268,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[寒冰]") && !line.contains("§7[") && flag == 0){
@@ -296,10 +296,10 @@ public class PetTalent {
     public void talentMsgBat2(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -329,10 +329,10 @@ public class PetTalent {
     public void talentMsgKongLang(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -362,10 +362,10 @@ public class PetTalent {
     public void talentMsgZhanHun(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -405,10 +405,10 @@ public class PetTalent {
     public void talentMsgZhanMa(Player player){
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        if (Identify.getPet(player,8) == null){
+        if (Utils.getPet(player,8) == null){
             return;
         }
-        ItemMeta petmeta = Identify.getPet(player,8);
+        ItemMeta petmeta = Utils.getPet(player,8);
         int level = Pet.getPetLevel(player);
         List<String> lore = petmeta != null ? petmeta.getLore() : null;
         for (int i = 0; i < (lore != null ? lore.size() : 0); i++){
@@ -441,7 +441,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[火焰]") && !line.contains("§7[") && flag == 0){
@@ -472,7 +472,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[嚎叫]") && !line.contains("§7[") && flag == 0){
@@ -503,7 +503,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[啄目]") && !line.contains("§7[") && flag == 0){
@@ -544,7 +544,7 @@ public class PetTalent {
         List<String> lore = petmeta.getLore();
         NumberFormat formatter = NumberFormat.getNumberInstance();
         formatter.setMaximumFractionDigits(2);
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         for (int i = 0;i < lore.size();i++){
             String line = lore.get(i);
             if (line.contains("[高级寒冰]") && !line.contains("§7[") && flag == 0){

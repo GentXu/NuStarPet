@@ -1,7 +1,7 @@
 package com.rihejiu.nustarpet.attribute;
 
 import com.rihejiu.nustarpet.hook.APHook;
-import com.rihejiu.nustarpet.listens.EventListener;
+import com.rihejiu.nustarpet.listens.AttrGiveListener;
 import com.rihejiu.nustarpet.taltent.PetTalent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -78,7 +78,7 @@ public class AddSourceAttribute {
      */
     public void giveAttr(Player player, ItemStack pets, String petname){
         flag = 0;
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         ItemMeta pet = pets.getItemMeta();
         asa.setPetnm(petname);
         for (String line:pet.getLore()){
@@ -140,7 +140,7 @@ public class AddSourceAttribute {
      * @param player    玩家名
      */
     public void takeAttr(Player player){
-        AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+        AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
         asa.setWisdom(0);
         asa.setSpirit(0);
         asa.setSpeed(0);

@@ -6,21 +6,24 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomTalent {
-    private static final String[] characters = {"D", "C", "B", "A", "S"};
+    protected String[] characters;
     // 字符对应的权重
-    private static final int[] weights = {9, 6, 4, 2, 1};
+    protected int[] weights;
 
     // 随机数生成器
-    private static final Random random = new Random();
+    private final Random random = new Random();
 
-    // 生成随机字符的方法
+    public RandomTalent(){
+        this.characters = new String[]{"D", "C", "B", "A", "S", "SS"};
+        this.weights = new int[]{9, 6, 5, 4, 3,1};
+    }
 
     /**
      *  随机单个字符，返回单个字符
      *  用于随机宠物属性天赋
      * @return  返回属性天赋
      */
-    public static String generateRandomCharacter() {
+    public  String generateRandomCharacter() {
         int totalWeight = 0;
         for (int weight : weights) {
             totalWeight += weight;

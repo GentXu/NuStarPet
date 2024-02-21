@@ -1,10 +1,9 @@
 package com.rihejiu.nustarpet;
 
+import com.rihejiu.nustarpet.listens.*;
+import com.rihejiu.nustarpet.menu.event.Monitor;
 import net.milkbowl.vault.economy.Economy;
-import com.rihejiu.nustarpet.command.Main;
-import com.rihejiu.nustarpet.listens.EntityDamageEntityListener;
-import com.rihejiu.nustarpet.listens.EventListener;
-import com.rihejiu.nustarpet.listens.PetLevelUp;
+import com.rihejiu.nustarpet.command.Commands;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
@@ -37,10 +36,8 @@ public final class NuStarPet extends JavaPlugin {
             getLogger().severe("初始化PlayerPoints成功！");
             points = PlayerPoints.getInstance().getAPI();
         }
-        Objects.requireNonNull(Bukkit.getPluginCommand("nspet")).setExecutor(new Main());
-        getServer().getPluginManager().registerEvents(new EntityDamageEntityListener(), this);
-        getServer().getPluginManager().registerEvents(new PetLevelUp(),  this);
-        getServer().getPluginManager().registerEvents( new EventListener(), this);
+        Objects.requireNonNull(Bukkit.getPluginCommand("nspet")).setExecutor(new Commands());
+        loadListeners();
         console("[NuStarPet]§a _   _       ____  _             ____      _   ");
         console("[NuStarPet]§a| \\ | |_   _/ ___|| |_ __ _ _ __|  _ \\ ___| |_ ");
         console("[NuStarPet]§a|  \\| | | | \\___ \\| __/ _` | '__| |_) / _ \\ __|");
@@ -48,6 +45,19 @@ public final class NuStarPet extends JavaPlugin {
         console("[NuStarPet]§a|_| \\_|\\__,_|____/ \\__\\__,_|_|  |_|   \\___|\\__|");
         console("§f宠物插件开启成功");
         console("§c作者: §93318029085");
+    }
+    private void loadListeners(){
+        getServer().getPluginManager().registerEvents(new EntityDamageEntityListener(), this);
+        getServer().getPluginManager().registerEvents( new AttrGiveListener(), this);
+        getServer().getPluginManager().registerEvents(new EvolveListener(),this);
+        getServer().getPluginManager().registerEvents(new Monitor(),this);
+        getServer().getPluginManager().registerEvents(new ImmolateListener(),this);
+        getServer().getPluginManager().registerEvents(new FruitListener(),this);
+        getServer().getPluginManager().registerEvents(new InheritListener(),this);
+        getServer().getPluginManager().registerEvents(new InheritListener1(),this);
+        getServer().getPluginManager().registerEvents(new LevelUpListener(),this);
+        getServer().getPluginManager().registerEvents(new ReviveListener(),this);
+        getServer().getPluginManager().registerEvents(new TaltenListener(),this);
     }
     private boolean initVault(){
         boolean hasNull = false;

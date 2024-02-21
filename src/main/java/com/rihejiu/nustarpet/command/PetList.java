@@ -1,6 +1,7 @@
 package com.rihejiu.nustarpet.command;
 
 import com.rihejiu.nustarpet.pet.Pet;
+import com.rihejiu.nustarpet.pet.PetWithoutSS;
 import com.rihejiu.nustarpet.random.pettalent.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,7 +19,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -74,7 +75,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -130,7 +131,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -186,7 +187,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -242,7 +243,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -298,7 +299,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();
@@ -354,7 +355,7 @@ public class PetList {
         // 获取 ItemMeta，用于设置 Lore 和 NBT
         ItemMeta meta = customItem.getItemMeta();
         // 创建异兽对象
-        Pet pet = new Pet();
+        Pet pet = new PetWithoutSS();
         // 设置Lore
         // 创建 Lore 列表并添加 Lore 行
         List<String> lore = new ArrayList<>();

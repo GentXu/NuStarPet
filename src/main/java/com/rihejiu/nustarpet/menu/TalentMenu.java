@@ -1,40 +1,30 @@
 package com.rihejiu.nustarpet.menu;
 
 import com.rihejiu.nustarpet.command.Utils;
+import com.rihejiu.nustarpet.menu.specification.AbstractMenu;
+import com.rihejiu.nustarpet.menu.specification.MenuHolder;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
-public class TalentMenu {
-    public Inventory components;
-    public Player owner;
-    public static final String TITLE = "异兽天赋";
+public class TalentMenu extends AbstractMenu {
     public TalentMenu(Player player){
-        components = Bukkit.createInventory(player,9,TITLE);
-        owner = player;
-        ItemStack glass = new ItemStack(Material.STAINED_GLASS_PANE);
-        ItemMeta glassMeta = glass.getItemMeta();
-        glassMeta.setDisplayName("-");
-        glass.setItemMeta(glassMeta);
-        ItemStack flower = new ItemStack(Material.DOUBLE_PLANT);
-        ItemMeta flowerMeta = flower.getItemMeta();
-        flowerMeta.setDisplayName(ChatColor.YELLOW + "开始培养");
-        flower.setItemMeta(flowerMeta);
-        ItemStack sign = new ItemStack(Material.SIGN);
-        ItemMeta signMeta = sign.getItemMeta();
-        signMeta.setDisplayName(ChatColor.YELLOW + "玩法介绍");
-        List<String> lore = new ArrayList<>();
-        lore.add(Utils.msgColor("&f放入宠物后点我获得介绍"));
-        signMeta.setLore(lore);
-        sign.setItemMeta(signMeta);
-        // 菜单绘制
+        this.owner = player;
+        this.size = 9;
+        this.title = "异兽天赋";
+        this.components = Bukkit.createInventory(new MenuHolder(this,"异兽天赋"),this.size,this.title);
+        build(this.components);
+    }
+    @Override
+    public void build(Inventory components){
+        ItemStack glass = MenuItem.menuItem(Material.STAINED_GLASS_PANE,"-",null);
+        ItemStack flower = MenuItem.menuItem(Material.DOUBLE_PLANT,Utils.lineColor("&e开始培养"),null);
+        ItemStack sign = MenuItem.menuItem(Material.SIGN,Utils.lineColor("&e玩法介绍"),new ArrayList<>(Collections.singleton(Utils.lineColor("&f放入宠物后点我获得介绍"))));
         for (int i = 0; i < 8; i++) {
             if (i != 4 && i != 7){
                 components.setItem(i,glass);
@@ -43,9 +33,5 @@ public class TalentMenu {
         }
         components.setItem(8,flower);
         components.setItem(7,sign);
-    }
-    // 打开该菜单的方法
-    public void open(){
-        owner.openInventory(components);
     }
 }

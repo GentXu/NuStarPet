@@ -1,7 +1,6 @@
 package com.rihejiu.nustarpet.listens;
 
 import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
-import com.rihejiu.nustarpet.command.Identify;
 import com.rihejiu.nustarpet.command.NBTUtils;
 import com.rihejiu.nustarpet.command.Utils;
 import org.bukkit.ChatColor;
@@ -19,7 +18,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EventListener implements Listener {
+public class AttrGiveListener implements Listener {
     private static final Map<UUID, AddSourceAttribute> asaMap = new HashMap<>();
     public static AddSourceAttribute getPlayerAsa(Player player) {
         return asaMap.get(player.getUniqueId());
@@ -28,7 +27,7 @@ public class EventListener implements Listener {
     @EventHandler
     public void invclose(InventoryCloseEvent i){
         Player player = (Player) i.getPlayer();
-        ItemStack pet = Identify.getPetStack(player,8);
+        ItemStack pet = player.getInventory().getItem(8);
         String NBTtag = NBTUtils.getStringTag(pet,"PetId");
         if (!asaMap.containsKey(player.getUniqueId())) {
             asaMap.put(player.getUniqueId(), new AddSourceAttribute());

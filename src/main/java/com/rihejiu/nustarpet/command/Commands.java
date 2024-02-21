@@ -1,8 +1,8 @@
 package com.rihejiu.nustarpet.command;
 
-import com.rihejiu.nustarpet.Menu;
+import com.rihejiu.nustarpet.menu.LevelUpMenu;
 import com.rihejiu.nustarpet.attribute.AddSourceAttribute;
-import com.rihejiu.nustarpet.listens.EventListener;
+import com.rihejiu.nustarpet.listens.AttrGiveListener;
 import com.rihejiu.nustarpet.menu.*;
 import com.rihejiu.nustarpet.taltent.PetTalent;
 import org.bukkit.Bukkit;
@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.NumberFormat;
 
-public class Main implements CommandExecutor {
+public class Commands implements CommandExecutor {
     @Override
     @ParametersAreNonnullByDefault
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args){
@@ -67,14 +67,14 @@ public class Main implements CommandExecutor {
                 }
                 break;
             case "petup":
-                new Menu(Bukkit.getPlayer(args[1])).open();
+                new LevelUpMenu(Bukkit.getPlayer(args[1])).open();
                 break;
             case "petattr":
                 PetTalent pt = new PetTalent();
                 NumberFormat formatter = NumberFormat.getNumberInstance();
                 formatter.setMaximumFractionDigits(2);
                 Player player = Bukkit.getPlayer(args[1]);
-                AddSourceAttribute asa = EventListener.getPlayerAsa(player);
+                AddSourceAttribute asa = AttrGiveListener.getPlayerAsa(player);
                 player.sendMessage(ChatColor.WHITE + "异兽提供属性:");
                 player.sendMessage(ChatColor.WHITE + "攻击力: " + formatter.format(asa.getPower() * 0.3));
                 player.sendMessage(ChatColor.WHITE + "命中几率: " + formatter.format(asa.getPower() * 0.03));
