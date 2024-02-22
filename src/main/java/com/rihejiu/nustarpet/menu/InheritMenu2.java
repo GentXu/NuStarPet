@@ -65,8 +65,8 @@ public class InheritMenu2 extends AbstractMenu {
         lore.add(Utils.lineColor("&f请选择即将传承成长属性"));
         lore.add(Utils.lineColor("&f被传异兽: " + inheritedPetName));
         lore.add(Utils.lineColor("&f传承异兽: " + inheritPetName));
-        lore.add(Utils.lineColor("&f克隆果实: " + Utils.checkKelongguoshi(this.owner) + "/" + "1"));
-        lore.add(Utils.lineColor("&f青涩果实: " + Utils.checkQingseguoshi(this.owner) + "/" + "5"));
+        lore.add(Utils.lineColor("&f克隆果实: " + Utils.checkItem(this.owner,"克隆果实") + "/" + "1"));
+        lore.add(Utils.lineColor("&f青涩果实: " + Utils.checkItem(this.owner,"青涩果实") + "/" + "5"));
         return lore;
     }
 

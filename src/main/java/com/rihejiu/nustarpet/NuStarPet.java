@@ -58,6 +58,7 @@ public final class NuStarPet extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new LevelUpListener(),this);
         getServer().getPluginManager().registerEvents(new ReviveListener(),this);
         getServer().getPluginManager().registerEvents(new TaltenListener(),this);
+        getServer().getPluginManager().registerEvents(new FruitMakeListener(),this);
     }
     private boolean initVault(){
         boolean hasNull = false;

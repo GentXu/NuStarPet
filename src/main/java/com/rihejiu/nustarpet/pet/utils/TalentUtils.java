@@ -382,11 +382,11 @@ public class TalentUtils {
         lore.add(msgColor("&f培养:"));
         lore.add(msgColor("&8&m一一一一一一一一一一一一一一一一"));
         if (chooseTalentPlan(petItem)) {
-            lore.add(msgColor("&f兽魂: ") + petTalentShouHun(petItem) + "/" + Utils.checkShouhun(player));
+            lore.add(msgColor("&f兽魂: ") + petTalentShouHun(petItem) + "/" + Utils.checkItem(player,"兽魂"));
             lore.add(msgColor("&f天赋精华: 4") + "/" + checkTalent(player));
             lore.add(msgColor("&f成功率: ") + petTalentChance(petItem) * 100 + "%");
         } else {
-            lore.add(msgColor("&f兽魂: ") + petTalentShouHun(petItem) + "/" + Utils.checkShouhun(player));
+            lore.add(msgColor("&f兽魂: ") + petTalentShouHun(petItem) + "/" + Utils.checkItem(player,"兽魂"));
             lore.add(msgColor("&f高级天赋精华: 2") + "/" + checkAdvancedTalent(player));
             lore.add(msgColor("&f成功率: ") + petTalentChance(petItem) * 100 + "%");
         }

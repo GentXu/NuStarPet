@@ -19,9 +19,9 @@ public class Utils {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);
     }
     public static int getPetExp(String level){
-        int petlevel = Integer.parseInt(level);
+        int petLevel = Integer.parseInt(level);
         int numa = 0;
-        for (int i = 1;i<petlevel;i++){
+        for (int i = 1;i<petLevel;i++){
             int num = 110*i*i+25*i+30;
             numa += num;
         }
@@ -89,9 +89,9 @@ public class Utils {
      */
     public static boolean checkPet(ItemStack item){
         if (item == null || item.getItemMeta() == null || !item.getItemMeta().hasDisplayName()){return false;}
-        String petid = NBTUtils.getStringTag(item,"PetId");
-        if (petid == null){return false;}
-        switch (petid){
+        String petId = NBTUtils.getStringTag(item,"PetId");
+        if (petId == null){return false;}
+        switch (petId){
             case "尖牙蝙蝠":
             case "沙王蜘蛛":
             case "萨满阿多":
@@ -103,39 +103,13 @@ public class Utils {
         }
         return false;
     }
-    public static int checkKelongguoshi(Player player){
-        int count = 0;
-        Inventory inv = player.getInventory();
-        for (ItemStack itemStack : inv.getContents()) {
-            if (itemStack != null) { // 检查物品是否为空
-                ItemMeta itemMeta = itemStack.getItemMeta();
-                if (itemMeta != null && itemMeta.hasDisplayName() && itemMeta.getDisplayName().contains("克隆果实")) {
-                    count += itemStack.getAmount();
-                }
-            }
-        }
-        return count;
-    }
-    public static int checkQingseguoshi(Player player){
-        int count = 0;
-        Inventory inv = player.getInventory();
-        for (ItemStack itemStack : inv.getContents()) {
-            if (itemStack != null) { // 检查物品是否为空
-                ItemMeta itemMeta = itemStack.getItemMeta();
-                if (itemMeta != null && itemMeta.hasDisplayName() && itemMeta.getDisplayName().contains("青涩果实")) {
-                    count += itemStack.getAmount();
-                }
-            }
-        }
-        return count;
-    }
-    public static int checkShouhun(Player player){
+    public static int checkItem(Player player,String itemName){
         int count = 0;
         Inventory inv = player.getInventory();
         for (ItemStack itemStack: inv .getContents()){
             if (itemStack != null){
                 ItemMeta itemMeta = itemStack.getItemMeta();
-                if (itemMeta != null && itemMeta.hasDisplayName() && itemMeta.getDisplayName().contains("兽魂")){
+                if (itemMeta != null && itemMeta.hasDisplayName() && itemMeta.getDisplayName().contains(itemName)){
                     count += itemStack.getAmount();
                 }
             }
@@ -152,5 +126,11 @@ public class Utils {
     }
     public static boolean checkNull(ItemStack item){
         return item == null || item.getItemMeta() == null || !item.getItemMeta().hasDisplayName();
+    }
+    public static boolean checkLore(ItemStack item,String line){
+        for (String a:item.getItemMeta().getLore()){
+            if (a.contains(line)) return true;
+        }
+        return false;
     }
 }

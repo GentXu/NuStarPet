@@ -96,18 +96,14 @@ public class Commands implements CommandExecutor {
             case "petinherit":
                 new InheritMenu(Bukkit.getPlayer(args[1])).open();
                 break;
-                // 跟随指令，已弃用
-/*            case "follow":
-                Utils.follow(Bukkit.getPlayer(args[1]));
-                break;
-            case "unfollow":
-                Utils.unFollow(Bukkit.getPlayer(args[1]));
-                break;*/
             case "pettalent":
                 new TalentMenu(Bukkit.getPlayer(args[1])).open();
                 break;
             case "petfruit":
                 new FruitMenu(Bukkit.getPlayer(args[1])).open();
+                break;
+            case "fruitmake":
+                new FruitMakeMenu(Bukkit.getPlayer(args[1])).open();
                 break;
         }
         return true;

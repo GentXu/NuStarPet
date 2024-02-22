@@ -37,7 +37,7 @@ public class TaltenListener implements Listener {
         if (petItem == null || petItem.getItemMeta() == null || !petItem.getItemMeta().hasDisplayName()){return;}
         if (Utils.checkPet(petItem)){
             if (TalentUtils.chooseTalentPlan(petItem)){
-                if (Utils.checkShouhun(player) >= TalentUtils.petTalentShouHun(petItem) && TalentUtils.checkTalent(player) >= 4){
+                if (Utils.checkItem(player,"兽魂") >= TalentUtils.petTalentShouHun(petItem) && TalentUtils.checkTalent(player) >= 4){
                     if (TalentUtils.checkPetTalent(petItem,player)) {
                         Utils.takeItem(player, "兽魂", TalentUtils.petTalentShouHun(petItem));
                         Utils.takeItem(player, "天赋精华", 4);
@@ -51,7 +51,7 @@ public class TaltenListener implements Listener {
                     player.sendMessage(Utils.msgColor("&c[培养]你的材料不足！"));
                 }
             } else {
-                if (Utils.checkShouhun(player) >= TalentUtils.petTalentShouHun(petItem) && TalentUtils.checkAdvancedTalent(player) >= 2){
+                if (Utils.checkItem(player,"兽魂") >= TalentUtils.petTalentShouHun(petItem) && TalentUtils.checkAdvancedTalent(player) >= 2){
                     if (TalentUtils.checkPetTalent(petItem,player)) {
                         Utils.takeItem(player, "兽魂", TalentUtils.petTalentShouHun(petItem));
                         Utils.takeItem(player, "高级精华", 2);

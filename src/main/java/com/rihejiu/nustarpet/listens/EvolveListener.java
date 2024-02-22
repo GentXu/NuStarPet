@@ -42,7 +42,7 @@ public class EvolveListener implements Listener {
                     lore.add(Utils.lineColor("&f你即将进化" + petName + ",请核对以下材料后确认进化"));
                     lore.add(Utils.lineColor("&f,花费100点券可以锁定1条属性进化(SS自动锁定):"));
                     lore.add(Utils.lineColor("&f生命精华: ") + EvolveUtils.checkSMJH(player) + "/1");
-                    lore.add(Utils.lineColor("&f兽魂: ") + Utils.checkShouhun(player) + "/" + evolution);
+                    lore.add(Utils.lineColor("&f兽魂: ") + Utils.checkItem(player,"兽魂") + "/" + evolution);
                     lore.add(Utils.lineColor("&f力量[") + NBTUtils.getStringTag(evolvePet,"力量") + "]敏捷[" + NBTUtils.getStringTag(evolvePet,"敏捷") +
                             "]体力[" + NBTUtils.getStringTag(evolvePet,"体力") + "]智慧[" + NBTUtils.getStringTag(evolvePet,"智慧") + "]");
                     sign.setItemMeta(Utils.buildSign(sign,lore));

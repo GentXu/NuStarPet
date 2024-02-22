@@ -57,7 +57,7 @@ public class InheritListener1 implements Listener {
         }
     }
     public void inherit(Player player,int mode,Inventory inv,ItemStack inheritedPet,ItemStack inheritPet){
-        if (Utils.checkQingseguoshi(player) >= 5 && Utils.checkKelongguoshi(player) >=1) {
+        if (Utils.checkItem(player,"青涩果实") >= 5 && Utils.checkItem(player,"克隆果实") >=1) {
             Utils.takeItem(player,"青涩果实",5);
             Utils.takeItem(player,"克隆果实",1);
             inheritedPet = InheritUtils.petInherit(inheritedPet, inheritPet, player, mode);
